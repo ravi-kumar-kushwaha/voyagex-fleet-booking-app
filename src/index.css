@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/autoplay';
+
+
+:root {
+  --swiper-navigation-color: rgb(59, 57, 57);
+  --swiper-pagination-color: rgb(77, 8, 240);
+  --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.958);
+  --swiper-pagination-bullet-active-color: rgb(251, 251, 251);
+}
+
+.swiper-button-prev {
+  color: rgb(61, 39, 39);
+}
+
+.swiper-button-next {
+  color: rgb(61, 39, 39);
+}
+
+.swiper-button-prev:hover {
+  color: rgb(61, 39, 39);
+}
+
+.swiper-button-next:hover {
+  color: rgb(61, 39, 39);
+}
