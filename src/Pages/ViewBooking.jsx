@@ -78,11 +78,12 @@ const ViewBooking = () => {
           Click here to see all canceled bookings
         </Link>
       </div>
-      <div className="flex flex-wrap items-center justify-center text-gray-700 mt-10 p-10 gap-6">
+
+      <div className="flex flex-wrap justify-center  text-gray-700 mt-10 p-10 gap-6">
         {Array.isArray(data) && data.length > 0 ? (
           data.map((item) => (
             <div
-              className="w-full md:w-[45%] lg:w-[30%] border border-amber-100 p-6 rounded-md shadow-lg bg-white"
+              className="w-[360px] p-6 border border-amber-100 rounded-[10px_0_10px_0] shadow-lg bg-white"
               key={item._id}
             >
               <div className="mb-3">
