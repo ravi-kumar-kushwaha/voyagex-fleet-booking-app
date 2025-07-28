@@ -60,6 +60,7 @@ useEffect(() => {
           password: ""
         });
         navigate('/');
+        window.location.reload();
       } else {
         setErrorMsg(response.data.message || "Login failed. Please try again.");
       }
