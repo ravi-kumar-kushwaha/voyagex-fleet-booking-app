@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loader from "../utils/Loader";
 
 const ViewBooking = () => {
+  const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_API_URL;
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -51,7 +52,7 @@ const ViewBooking = () => {
       );
       if (response.data.success) {
         alert(response.data.message);
-        window.location.reload("/bookings");
+        navigate("/bookings");
       }
     } catch (error) {
       const message =
