@@ -10,6 +10,7 @@ const SearchVehicle = () => {
 
   const [availableVehicles, setAvailableVehicles] = useState([]);
   const [searchCriteriaData, setSearchCriteriaData] = useState(null); 
+  console.log("searchCriteriaData", searchCriteriaData)
   const [loading, setLoading] = useState(false);
 
   const [searchData, setSearchData] = useState({
@@ -246,33 +247,33 @@ const SearchVehicle = () => {
           <div>
             <div className="text-center items-center justify-center px-6 py-4">
               <h1 className="text-3xl font-semibold ">
-                {searchCriteriaData?.message} for the given search criteria{" "}
+                {searchCriteriaData?.data?.message} for the given search criteria{" "}
               </h1>
             </div>
             <div className="flex text-center items-center justify-center px-6 py-4 gap-6">
               <h1>
                 <span className="font-bold">Start Time:</span>{" "}
                 {new Date(
-                  searchCriteriaData?.data?.searchCriteria?.startTime
+                  searchCriteriaData?.data?.data?.searchCriteria?.startTime
                 ).toLocaleString()}
               </h1>
               <h1>
                 <span className="font-bold">End Time:</span>{" "}
                 {new Date(
-                  searchCriteriaData?.data?.searchCriteria?.endTime
+                  searchCriteriaData?.data?.data?.searchCriteria?.endTime
                 ).toLocaleString()}
               </h1>
               <h1>
                 <span className="font-bold">From Pincode:</span>{" "}
-                {searchCriteriaData?.data?.searchCriteria?.fromPincode}
+                {searchCriteriaData?.data?.data?.searchCriteria?.fromPincode}
               </h1>
               <h1>
                 <span className="font-bold">To Pincode:</span>{" "}
-                {searchCriteriaData?.data?.searchCriteria?.toPincode}
+                {searchCriteriaData?.data?.data?.searchCriteria?.toPincode}
               </h1>
               <h1>
                 <span className="font-bold">Capacity Required:</span>{" "}
-                {searchCriteriaData?.data?.searchCriteria?.capacityRequired}
+                {searchCriteriaData?.data?.data?.searchCriteria?.capacityRequired}Kg
               </h1>
             </div>
           </div>
