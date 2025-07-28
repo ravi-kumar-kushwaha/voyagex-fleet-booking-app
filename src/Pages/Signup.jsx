@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Loader from "../utils/Loader";
 
 const Signup = () => {
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const BASE_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
@@ -22,9 +25,6 @@ const Signup = () => {
     password: "",
   });
 
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
@@ -37,6 +37,24 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     setErrorMsg("");
+
+    if (!data.name || !data.email || !data.password) {
+      alert("All fields are required");
+      setLoading(false);
+      return;
+    }
+
+    if (!data.email.includes("@") || !data.email.includes(".")) {
+      setErrorMsg("Invalid email format");
+      setLoading(false);
+      return;
+    }
+
+    if (data.password.length < 6) {
+      setErrorMsg("Password must be at least 6 characters long");
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await axios.post(`${BASE_URL}/user/register`, data);
@@ -62,7 +80,11 @@ const Signup = () => {
   };
 
   if (loading) {
-    return <div><Loader/></div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   return (

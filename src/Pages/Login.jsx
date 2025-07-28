@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Loader from "../utils/Loader";
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
     const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -18,8 +21,7 @@ useEffect(() => {
     password:""
   });
 
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +36,17 @@ useEffect(() => {
     setLoading(true);
     setErrorMsg("");
 
+    if (!data.email || !data.password) {
+      alert("All fields are required");
+      setLoading(false);
+      return;
+    }
+ 
+    if(!data.email.includes("@") || !data.email.includes(".")){
+      setErrorMsg("Invalid email format");
+      setLoading(false);
+      return;
+    }
     try {
       const response = await axios.post(`${BASE_URL}/user/login`, data);
     

@@ -29,23 +29,17 @@ function App() {
             <Route path="/*" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-
-            <Route
-              path="/add-vehicle"
-              element={token ? <AddVehicle /> : <Login />}
-            />
-            <Route
-              path="/bookings"
-              element={token ? <ViewBooking /> : <Login />}
-            />
-            <Route
-              path="/book-vehicle/:id"
-              element={token ? <BookVehicle /> : <Login />}
-            />
-            <Route
-              path="/canceled-bookings"
-              element={token ? <GetAllCancledBooking /> : <Login />}
-            />
+            {token && (
+              <>
+                <Route path="/add-vehicle" element={<AddVehicle />} />
+                <Route path="/bookings" element={<ViewBooking />} />
+                <Route path="/book-vehicle/:id" element={<BookVehicle />} />
+                <Route
+                  path="/canceled-bookings"
+                  element={<GetAllCancledBooking />}
+                />
+              </>
+            )}
           </Routes>
         </main>
 

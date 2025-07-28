@@ -32,16 +32,19 @@ const AddVehicle = () => {
     
     if (!data.name || !data.capacityKg || !data.tyres) {
         alert("All fields are required");
+        setLoading(false);
         return;
       }
     
       if(data.capacityKg < 1 || data.capacityKg > 50000){
         setErrorMsg("Capacity must be between 1 and 50000");
+        setLoading(false);
         return;
       }
     
       if(data.tyres < 2 || data.tyres > 18){
         setErrorMsg("Tyres must be between 2 and 18");
+        setLoading(false);
         return;
       }
       

@@ -30,20 +30,24 @@ const BookVehicle = () => {
   const startDate = new Date(data.startTime);
   const now = new Date();
 
-  if (!isNaN(startDate.getTime()) && startDate <= now) {
-    alert("Please select future date");
-  }
-
   const handleBooking = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (!isNaN(startDate.getTime()) && startDate <= now) {
+      alert("Please select future date");
+      setLoading(false);
+      return;
+    }
+
     if (!/^\d{6}$/.test(data?.fromPincode) || !/^\d{6}$/.test(data?.toPincode)) {
       alert("Invalid pincode format. Pincodes must be exactly 6 digits");
+      setLoading(false);
       return;
    }
 
    if (data?.fromPincode === data?.toPincode) {
      alert("You cannot book vehicle for Same Pincode!");
+     setLoading(false);
      return;
    }
 

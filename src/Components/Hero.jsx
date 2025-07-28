@@ -10,63 +10,6 @@ import banner3 from "../assets/banner3.jpeg";
 import banner4 from "../assets/banner4.jpeg";
 const Hero = () => {
 
-
-//   return (
-//     // <div
-//     //   className="flex h-[400px] bg-base-200 bg-cover"
-//     //   style={{
-//     //     backgroundImage:
-//     //       "url('https://gaadibooking.com/assets/img/Gaadibooking_Desktop_Banner2.jpg')",
-//     //   }}
-//     // >
-//     //   <div className="hero-content text-center text-neutral-content w-full">
-//     //     <div className="max-w-[100%] mx-auto">
-//     //       <h1 className="mb-6 mt-8 text-5xl text-black font-bold">Welcome to VoyageX</h1>
-//     //       <p className="mb-10 w-[90%] text-xl font-semibold  text-gray-700">
-//     //         Discover a world of adventure and excitement with our car rental
-//     //         service. Whether you're planning a road trip, a family vacation, or
-//     //         a business trip, we have the perfect vehicle to make your journey
-//     //         unforgettable.
-//     //       </p>
-//     //       {/* <button className="btn btn-primary px-4">Get Started</button> */}
-//     //     </div>
-//     //   </div>
-//     //   <div className="hero px-4"></div>
-//     // </div>
-
-
-// {/* <div
-//   className="relative h-[500px] md:h-[600px] bg-cover bg-center"
-//   style={{
-//     backgroundImage:
-//       "url('https://images.unsplash.com/photo-1616356301586-a49cfb29fa33?auto=format&fit=crop&w=1400&q=80')", // High-quality vehicle logistics photo
-//   }}
-// >
-
-//   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
-
-
-//   <div className="relative z-10 flex items-center justify-center h-full text-left px-6 md:px-12">
-//     <div className="max-w-3xl text-white">
-//       <h1 className="text-3xl md:text-5xl font-bold mb-4">
-//         Welcome to VoyageX
-//       </h1>
-//       <p className="text-lg md:text-xl font-medium text-gray-200 mb-8">
-//         Book logistics vehicles effortlessly. Whether it's a business shipment or a long-distance move, we match you with the perfect fleet — fast and reliable.
-//       </p>
-//       <button className="btn btn-primary text-lg px-6 py-3 rounded-full hover:scale-105 transition-transform duration-300">
-//         Explore Fleet
-//       </button>
-//     </div>
-//   </div>
-// </div> */}
-
-
-    
-//   );
-
-
-
 const images = [
   {
     url: banner1,

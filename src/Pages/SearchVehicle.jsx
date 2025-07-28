@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AvailableVehicle from "./AvailableVehicle";
 import Loader from "../utils/Loader";
+import { Link } from "react-router-dom";
 
 const SearchVehicle = () => {
+  const token = localStorage.getItem("token");
   const BASE_URL = import.meta.env.VITE_API_URL;
 
   const [availableVehicles, setAvailableVehicles] = useState([]);
-  const [searchCriteria, setSearchCriteria] = useState([]);
+  const [searchCriteriaData, setSearchCriteriaData] = useState(null); 
   const [loading, setLoading] = useState(false);
-  const searchCriteriaData = searchCriteria ? searchCriteria.data : null;
 
   const [searchData, setSearchData] = useState({
     startTime: "",
@@ -33,39 +34,52 @@ const SearchVehicle = () => {
         params: searchParams,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       return response;
     } catch (error) {
-      console.log("error", error.message);
-    }finally{
+      console.error("Error fetching vehicles:", error?.response?.data?.message || error.message);
+      return null;
+    } finally {
       setLoading(false);
     }
   };
 
-  const startDate = new Date(searchData.startTime);
-  const now = new Date();
-
-  if (!isNaN(startDate.getTime()) && startDate <= now) {
-    alert("Please select future date");
-  }
-
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
-    if (!/^\d{6}$/.test(searchData?.fromPincode) || !/^\d{6}$/.test(searchData?.toPincode)) {
-       alert("Invalid pincode format. Pincodes must be exactly 6 digits");
-       return;
+    setLoading(true);
+
+    const startDate = new Date(searchData.startTime);
+    const now = new Date();
+
+    if (!isNaN(startDate.getTime()) && startDate <= now) {
+      alert("Please select a future date and time");
+      setLoading(false);
+      return;
+    }
+
+    if (
+      !/^\d{6}$/.test(searchData?.fromPincode) ||
+      !/^\d{6}$/.test(searchData?.toPincode)
+    ) {
+      alert("Invalid pincode format. Pincodes must be exactly 6 digits");
+      setLoading(false);
+      return;
     }
 
     if (searchData?.fromPincode === searchData?.toPincode) {
       alert("No Vehicles Available for Same Pincode!");
+      setLoading(false);
       return;
     }
 
-    if(searchData?.capacityRequired < 1 || searchData?.capacityRequired > 50000){
+    if (
+      searchData?.capacityRequired < 1 ||
+      searchData?.capacityRequired > 50000
+    ) {
       alert("Capacity must be between 1 and 50000");
+      setLoading(false);
       return;
     }
 
@@ -75,21 +89,24 @@ const SearchVehicle = () => {
       toPincode: searchData.toPincode,
       capacityRequired: parseInt(searchData.capacityRequired, 10),
     };
+
     try {
       const response = await getAvailableVehicles(searchParamData);
       const availableVehicles =
         response?.data?.data?.availableVehicles || response?.data?.data;
-      
+
       if (!availableVehicles || availableVehicles.length === 0) {
         alert(
-          response?.message ||
+          response?.data?.message ||
             "No vehicles found matching capacity requirements"
         );
         return;
       }
+
       setAvailableVehicles(availableVehicles);
-      setSearchCriteria(response);
+      setSearchCriteriaData(response);
       alert(response?.data?.message);
+
       setSearchData({
         startTime: "",
         fromPincode: "",
@@ -104,14 +121,19 @@ const SearchVehicle = () => {
         error?.response?.message ||
         "Failed to search vehicles. Please try again.";
       alert(message);
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
 
   if (loading) {
-    return <div><Loader/></div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Loader />
+      </div>
+    );
   }
+
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-10">
@@ -194,13 +216,24 @@ const SearchVehicle = () => {
           </div>
 
           <div className="flex items-end ">
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="btn btn-primary mt-4"
-            >
-              Search
-            </button>
+            {token ? (
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="btn btn-primary mt-4"
+              >
+                Search
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn-primary mt-4"
+              >
+                <Link to="/login">
+                Search
+                </Link>
+              </button>
+            )}
           </div>
         </div>
       </div>

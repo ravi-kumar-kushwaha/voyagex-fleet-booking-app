@@ -4,7 +4,7 @@ const Logo = ({
     className = "",
     showAnimation = true 
   }) => {
-    // Generate unique IDs to avoid conflicts when multiple logos are rendered
+    
     const gradientId1 = `modernGradient-${Math.random().toString(36).substr(2, 9)}`;
     const gradientId2 = `cardGradient-${Math.random().toString(36).substr(2, 9)}`;
     const gradientId3 = `vehicleGradient-${Math.random().toString(36).substr(2, 9)}`;
@@ -51,12 +51,12 @@ const Logo = ({
           </filter>
         </defs>
         
-        {/* Background circles */}
+      
         <circle cx="120" cy="120" r="110" fill={`url(#${gradientId1})`} opacity="0.1"/>
         <circle cx="120" cy="120" r="100" fill={`url(#${gradientId1})`} filter={`url(#${filterId1})`}/>
         <circle cx="120" cy="120" r="95" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1"/>
         
-        {/* Vehicle */}
+        
         <g transform="translate(60, 85)">
           <path 
             d="M15 25 Q12 18 20 18 L100 18 Q108 18 105 25 L105 38 Q110 38 112 43 L112 48 Q112 53 107 53 L100 53 Q98 58 93 58 L87 58 Q82 58 82 53 L38 53 Q38 58 33 58 L27 58 Q22 58 22 53 L15 53 Q10 53 10 48 L10 43 Q12 38 17 38 Z" 
@@ -66,11 +66,11 @@ const Logo = ({
             filter={`url(#${filterId1})`}
           />
           
-          {/* Windows */}
+      
           <rect x="25" y="20" width="30" height="15" rx="6" fill={`url(#${gradientId2})`} opacity="0.8"/>
           <rect x="65" y="20" width="30" height="15" rx="6" fill={`url(#${gradientId2})`} opacity="0.8"/>
           
-          {/* Wheels */}
+
           <circle cx="30" cy="53" r="10" fill="#1e293b"/>
           <circle cx="90" cy="53" r="10" fill="#1e293b"/>
           <circle cx="30" cy="53" r="7" fill={`url(#${gradientId2})`}/>
@@ -78,12 +78,11 @@ const Logo = ({
           <circle cx="30" cy="53" r="4" fill="#ffffff" opacity="0.9"/>
           <circle cx="90" cy="53" r="4" fill="#ffffff" opacity="0.9"/>
           
-          {/* Headlights */}
+         
           <ellipse cx="108" cy="30" rx="4" ry="2" fill="#00f2fe" filter={`url(#${filterId2})`}/>
           <ellipse cx="108" cy="40" rx="4" ry="2" fill="#00f2fe" filter={`url(#${filterId2})`}/>
         </g>
-        
-        {/* Phone/Booking interface */}
+
         <g transform="translate(145, 60)">
           <rect x="0" y="0" width="30" height="45" rx="8" fill={`url(#${gradientId3})`} stroke="rgba(100,116,139,0.2)" strokeWidth="1" filter={`url(#${filterId1})`}/>
           <rect x="3" y="6" width="24" height="33" rx="4" fill={`url(#${gradientId2})`}/>
@@ -95,13 +94,13 @@ const Logo = ({
           <rect x="12" y="41" width="6" height="2" rx="1" fill="rgba(100,116,139,0.3)"/>
         </g>
         
-        {/* Location pin */}
+   
         <g transform="translate(75, 130)">
           <path d="M15 5 Q20 0 25 5 Q25 12 15 25 Q5 12 5 5 Q10 0 15 5 Z" fill="#ef4444" filter={`url(#${filterId1})`}/>
           <circle cx="15" cy="8" r="4" fill="#ffffff"/>
           <circle cx="15" cy="8" r="2" fill="#ef4444"/>
           
-          {/* Animated GPS ring - only if animation is enabled */}
+        
           {showAnimation && (
             <circle cx="15" cy="8" r="8" fill="none" stroke="#ef4444" strokeWidth="1" opacity="0.3">
               <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
@@ -110,7 +109,7 @@ const Logo = ({
           )}
         </g>
         
-        {/* Text */}
+   
         <text x="120" y="180" textAnchor="middle" fontFamily="Arial, sans-serif" fontSize="22" fontWeight="800" fill="#ffffff" filter={`url(#${filterId1})`}>
           VoyageX
         </text>
@@ -118,7 +117,7 @@ const Logo = ({
           Smart Mobility
         </text>
         
-        {/* Decorative animated elements - only if animation is enabled */}
+        
         {showAnimation && (
           <>
             <circle cx="180" cy="80" r="3" fill="#00f2fe" opacity="0.6">
