@@ -52,7 +52,7 @@ const ViewBooking = () => {
       );
       if (response.data.success) {
         alert(response.data.message);
-        navigate("/bookings");
+        navigate("/canceled-bookings");
       }
     } catch (error) {
       const message =
