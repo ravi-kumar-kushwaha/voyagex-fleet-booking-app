@@ -106,7 +106,7 @@ const Signup = () => {
           name="name"
           value={data.name}
           onChange={handleChange}
-          placeholder="Enter your email"
+          placeholder="Enter your name"
           className="p-3 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
         />
